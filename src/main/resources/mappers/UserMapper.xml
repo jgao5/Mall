@@ -181,7 +181,28 @@
     select count(1)
     from mall_user
     where username = #{username}
-    and question = #{question}
+    and question = #{hint}
     and answer = #{answer}
+  </select>
+
+  <update id="updatePasswordByUsername" parameterType="map">
+    update mall_user
+    set password = #{newPassword}, update_time = now()
+    where username = #{username}
+  </update>
+
+  <select id="checkPassword" parameterType="map" resultType="int">
+    select
+    count(1)
+    from mall_user
+    where id = #{userId}
+    and password = #{password}
+  </select>
+
+  <select id="checkEmailByUserId" parameterType="map" resultType="int">
+    select count(1)
+    from mall_user
+    where email = #{email}
+    and id != #{userId}
   </select>
 </mapper>
