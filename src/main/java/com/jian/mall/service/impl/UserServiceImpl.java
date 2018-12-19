@@ -64,14 +64,14 @@ public class UserServiceImpl implements IUserService {
             if (Const.USERNAME.equals(type)) {
                 int resultCount = userMapper.checkUsername(str);
                 if (resultCount > 0) {
-                    ServerResponse.createByErrorMessage("用户名已存在");
+                    return ServerResponse.createByErrorMessage("用户名已存在");
                 }
             }
 
             if (Const.EMAIL.equals(type)) {
                 int resultCount = userMapper.checkEmail(str);
                 if (resultCount > 0) {
-                    ServerResponse.createByErrorMessage("邮箱已存在");
+                    return ServerResponse.createByErrorMessage("邮箱已存在");
                 }
             }
         } else {
@@ -179,5 +179,18 @@ public class UserServiceImpl implements IUserService {
         }
         user.setPassword(StringUtils.EMPTY);
         return ServerResponse.createBySuccess(user);
+    }
+
+    /**
+     * 校验是否是管理员
+     * @param user
+     * @return
+     */
+    @Override
+    public ServerResponse checkAdmin(User user) {
+        if (user != null && user.getRole() == Const.Role.ROLE_ADMIN) {
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByError();
     }
 }
