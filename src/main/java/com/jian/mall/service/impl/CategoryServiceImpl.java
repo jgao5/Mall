@@ -35,7 +35,7 @@ public class CategoryServiceImpl implements ICategoryService {
         category.setParentId(parentId);
         category.setStatus(true); //该分类可用
 
-        int selectCount = categoryMapper.insertSelective(category);
+        int selectCount = categoryMapper.insert(category);
         if (selectCount > 0) {
             return ServerResponse.createBySuccessMessage("添加品类成功");
         }

@@ -74,12 +74,15 @@
       <if test="checked != null" >
         #{checked,jdbcType=INTEGER},
       </if>
-      <if test="createTime != null" >
-        now(),
-      </if>
-      <if test="updateTime != null" >
-        now(),
-      </if>
+      <!--<if test="createTime != null" >-->
+        <!--now(),-->
+      <!--</if>-->
+      <!--<if test="updateTime != null" >-->
+        <!--now(),-->
+      <!--</if>-->
+      now(),
+      now(),
+
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.jian.mall.pojo.Cart" >
@@ -100,9 +103,10 @@
       <if test="createTime != null" >
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
-      <if test="updateTime != null" >
-        update_time = now(),
-      </if>
+      <!--<if test="updateTime != null" >-->
+        <!--update_time = now(),-->
+      <!--</if>-->
+      now(),
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>

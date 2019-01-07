@@ -9,7 +9,6 @@ import com.jian.mall.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,7 +24,7 @@ public class CategoryManageController {
     private ICategoryService iCategoryService;
 
 
-    @RequestMapping(value = "add_category.do", method = RequestMethod.POST)
+    @RequestMapping("add_category.do")
     @ResponseBody
     public ServerResponse addCategory(HttpSession httpSession, String categoryName, @RequestParam(value = "parentId", defaultValue = "0") Integer parentId) {
         User user = (User) httpSession.getAttribute(Const.CURRENT_USER);
@@ -41,7 +40,7 @@ public class CategoryManageController {
     }
 
 
-    @RequestMapping(value = "set_category_name.do", method = RequestMethod.POST)
+    @RequestMapping("set_category_name.do")
     @ResponseBody
     public ServerResponse setCategoryName(HttpSession httpSession,Integer categoryId, String categoryName) {
         User user = (User) httpSession.getAttribute(Const.CURRENT_USER);
@@ -57,7 +56,7 @@ public class CategoryManageController {
     }
 
 
-    @RequestMapping(value = "get_category.do", method = RequestMethod.GET)
+    @RequestMapping("get_category.do")
     @ResponseBody
     public ServerResponse getChildParallelCategory(HttpSession httpSession, @RequestParam(value = "categoryId", defaultValue = "0") Integer categoryId) {
         User user = (User) httpSession.getAttribute(Const.CURRENT_USER);
@@ -74,7 +73,7 @@ public class CategoryManageController {
     }
 
 
-    @RequestMapping(value = "get_category_recursive.do", method = RequestMethod.POST)
+    @RequestMapping("get_category_recursive.do")
     @ResponseBody
     public ServerResponse getCategoryRecursive(HttpSession httpSession, @RequestParam(value = "categoryId", defaultValue = "0") Integer categoryId) {
         User user = (User) httpSession.getAttribute(Const.CURRENT_USER);
